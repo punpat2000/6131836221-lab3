@@ -107,33 +107,32 @@ public class LinkedList {
 	
 	public void nodeSwap(Iterator i1, Iterator i2) throws Exception {
 		if(this.isEmpty()) return;
-		MyListIterator l1 = (MyListIterator)i1;
-		MyListIterator l2 = (MyListIterator)i2;
-		ListNode temp = l2.hasNext()?l2.currentNode.nextNode:null;
-		l2.currentNode.nextNode = l1.currentNode.nextNode;
-		l1.currentNode.nextNode = temp;
-		temp = ((MyListIterator) this.findPrevious(i2)).currentNode;
-		((MyListIterator) this.findPrevious(i1)).currentNode.nextNode = l2.currentNode;
-		temp.nextNode = l1.currentNode;
+		ListNode temp = ((MyListIterator)i2).currentNode.nextNode;
+		ListNode temp2 = ((MyListIterator) this.findPrevious(i2)).currentNode;
+		((MyListIterator)i2).currentNode.nextNode = ((MyListIterator)i1).currentNode.nextNode;
+		((MyListIterator)i1).currentNode.nextNode = temp;
+		((MyListIterator) this.findPrevious(i1)).currentNode.nextNode = ((MyListIterator)i2).currentNode;
+		temp2.nextNode = ((MyListIterator)i1).currentNode;
 	}
 	
 	// nodeSwap Different List
 	
 	public void nodeSwap(Iterator i1, LinkedList l2, Iterator i2) throws Exception {
-		MyListIterator l1 = (MyListIterator)i1;
-		MyListIterator p2 = (MyListIterator)i2;
-		ListNode temp = p2.hasNext()?p2.currentNode.nextNode:null;
-		p2.currentNode.nextNode = l1.currentNode.nextNode;
-		l1.currentNode.nextNode = temp;
-		temp = ((MyListIterator) this.findPrevious(i2)).currentNode;
-		((MyListIterator) this.findPrevious(i1)).currentNode.nextNode = p2.currentNode;
-		temp.nextNode = l1.currentNode;
+		if(this.isEmpty() || l2.isEmpty()) return;
+		ListNode temp = ((MyListIterator)i2).currentNode.nextNode;
+		ListNode temp2 = ((MyListIterator) l2.findPrevious(i2)).currentNode;
+		((MyListIterator)i2).currentNode.nextNode = ((MyListIterator)i1).currentNode.nextNode;
+		((MyListIterator)i1).currentNode.nextNode = temp;
+		((MyListIterator) this.findPrevious(i1)).currentNode.nextNode = ((MyListIterator)i2).currentNode;
+		temp2.nextNode = ((MyListIterator)i1).currentNode;
 	}
 	
 	// crossOver
 	
 	public void crossOver(Iterator i1, Iterator i2) throws Exception {
-
+		ListNode temp = ((MyListIterator)i2).currentNode.nextNode;
+		((MyListIterator)i2).currentNode.nextNode = ((MyListIterator)i1).currentNode.nextNode;
+		((MyListIterator)i1).currentNode.nextNode = temp;
 	}
 	
 
